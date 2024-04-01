@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  db:
+    container_name: db-mysql-shop
+    image: percona:latest
+    platform: linux/amd64
+    command: mysqld --sql_mode=""
+    ports:
+      - 3317:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: myshop
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      - server-side
+
+networks:
+  server-side:
+
+volumes:
+  mysql:
